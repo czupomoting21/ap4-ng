@@ -13,6 +13,14 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
 import { LayoutModule } from '@angular/cdk/layout';
+import { HttpClientModule } from '@angular/common/http';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatRadioModule } from '@angular/material/radio';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
   declarations: [
@@ -23,6 +31,9 @@ import { LayoutModule } from '@angular/cdk/layout';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MatToolbarModule,
@@ -30,6 +41,11 @@ import { LayoutModule } from '@angular/cdk/layout';
     MatButtonModule,
     MatIconModule,
     MatDividerModule,
+    MatChipsModule,
+    MatRadioModule,
+    MatAutocompleteModule,
+    MatFormFieldModule,
+    MatInputModule,
     LayoutModule,
   ],
   providers: [],

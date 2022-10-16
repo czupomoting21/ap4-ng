@@ -1,1 +1,43 @@
-<p>fixture-list works!</p>
+<!-- Sport selection -->
+<label id="select-sport-label">Select sport</label>
+<mat-radio-group aria-label="Select sport"
+  aria-labelledby="select-sport-label"
+  class="select-sport-radio-group"
+  [(ngModel)]="selectedSportId"
+  (ngModelChange)="onSportIdChanged()"
+>
+  <mat-radio-button 
+  *ngFor="let sport of sports" 
+  class="select-sport-radio-button"
+  [value]="sport?.id">{{sport.name}}</mat-radio-button>
+</mat-radio-group>
+
+<pre>selectedSport: {{ selectedSportId }} </pre>
+
+<!-- Leagues selection -->
+<mat-form-field class="select-leagues-chip-list" appearance="fill">
+  <mat-label>Select leagues</mat-label>
+  <mat-chip-list #leaguesChipList aria-label="League selection">
+    <mat-chip
+      *ngFor="let league of selectedLeagues"
+      (removed)="removeLeague(league)">
+      {{league.name}}
+      <button matChipRemove>
+        <mat-icon>cancel</mat-icon>
+      </button>
+    </mat-chip>
+    <input
+      placeholder="Add league..."
+      #selectLeaguesInput
+      [formControl]="selectLeaguesCtrl"
+      [matAutocomplete]="auto"
+      [matChipInputFor]="leaguesChipList"
+      [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+      (matChipInputTokenEnd)="addLeague($event)">
+  </mat-chip-list>
+  <mat-autocomplete #auto="matAutocomplete" (optionSelected)="leagueSelected($event)">
+    <mat-option *ngFor="let league of filteredLeagues | async" [value]="league?.name">
+      {{league?.name}}
+    </mat-option>
+  </mat-autocomplete>
+</mat-form-field>
