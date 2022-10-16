@@ -8,6 +8,8 @@ import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
+import { ApFixture } from '../_model/ap-fixture';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-fixture-list',
@@ -17,6 +19,9 @@ import { map, startWith } from 'rxjs/operators';
 export class FixtureListComponent implements OnInit {
   sports: ApSport[] = [];
   leagues: ApLeague[] = [];
+  fixtures: ApFixture[] = [];
+
+  dataSource: MatTableDataSource<ApFixture>;
 
   selectedSportId: number = 0;
   supportedSports = ['Soccer', 'Tennis'];
@@ -27,6 +32,8 @@ export class FixtureListComponent implements OnInit {
   filteredLeagues: Observable<ApLeague[]>;
 
   separatorKeysCodes: number[] = [ENTER, COMMA];
+
+  displayedColumns: string[] = ['id', 'starts', 'home', 'away'];
 
   @ViewChild('selectLeaguesInput')
   selectLeaguesInput: ElementRef<HTMLInputElement>;
@@ -54,6 +61,7 @@ export class FixtureListComponent implements OnInit {
       .getLeaguesForSport(this.selectedSportId)
       .subscribe((r) => {
         this.leagues = r;
+        this.fixtures = [];
       });
   }
 
@@ -92,6 +100,21 @@ export class FixtureListComponent implements OnInit {
 
     this.selectLeaguesInput.nativeElement.value = '';
     this.selectLeaguesCtrl.setValue(null);
+  }
+
+  showNextFixtures() {
+    if (!this.selectedSportId || !this.selectedLeagues.length) {
+      console.log('No leagues selected!');
+      return;
+    }
+    const leagueIds = this.selectedLeagues.map((l) => l.id);
+    this.fixturesService
+      .getFutureEventsForLeagues(this.selectedSportId, leagueIds)
+      .subscribe((r) => {
+        this.fixtures = r;
+        // Assign the data to the data source for the table to render
+        this.dataSource = new MatTableDataSource(this.fixtures);
+      });
   }
 
   private _filter(value: string): ApLeague[] {

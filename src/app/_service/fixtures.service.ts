@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { ApFixture } from '../_model/ap-fixture';
 import { ApLeague } from '../_model/ap-league';
 import { ApSport } from '../_model/ap-sport';
 
@@ -18,7 +19,17 @@ export class FixturesService {
   }
 
   getLeaguesForSport(sportId: number): Observable<ApLeague[]> {
-    const url = `${this.baseApiUri}/sports/${sportId}/leagues`;
+    const url = `${this.baseApiUri}/sports/${sportId}/leagues?withExistingFixtures=true`;
     return this.http.get<ApLeague[]>(url);
+  }
+
+  getFutureEventsForLeagues(
+    sportId: number,
+    leagueIds: number[]
+  ): Observable<ApFixture[]> {
+    const url = `${
+      this.baseApiUri
+    }/sports/${sportId}/next-fixtures?leagueIds=${leagueIds.join(',')}`;
+    return this.http.get<ApFixture[]>(url);
   }
 }
