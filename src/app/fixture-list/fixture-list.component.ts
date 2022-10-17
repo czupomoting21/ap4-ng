@@ -6,10 +6,12 @@ import { ApSport } from '../_model/ap-sport';
 import { FixturesService } from '../_service/fixtures.service';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
-import { Observable } from 'rxjs';
+import { Observable, from, of, zip } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 import { ApFixture } from '../_model/ap-fixture';
 import { MatTableDataSource } from '@angular/material/table';
+import * as _ from 'underscore';
+import { groupBy, mergeMap, toArray } from 'rxjs/operators';
 
 @Component({
   selector: 'app-fixture-list',
@@ -20,6 +22,7 @@ export class FixtureListComponent implements OnInit {
   sports: ApSport[] = [];
   leagues: ApLeague[] = [];
   fixtures: ApFixture[] = [];
+  fixturesByDay: { [key: string]: ApFixture[] } = {};
 
   dataSource: MatTableDataSource<ApFixture>;
 
@@ -112,8 +115,16 @@ export class FixtureListComponent implements OnInit {
       .getFutureEventsForLeagues(this.selectedSportId, leagueIds)
       .subscribe((r) => {
         this.fixtures = r;
-        // Assign the data to the data source for the table to render
-        this.dataSource = new MatTableDataSource(this.fixtures);
+
+        const source = from(r);
+        source
+          .pipe(
+            groupBy((item) => new Date(item?.starts).toLocaleDateString()),
+            mergeMap((group) => zip(of(group.key), group.pipe(toArray())))
+          )
+          .subscribe((r) => {
+            this.fixturesByDay[r[0]] = r[1];
+          });
       });
   }
 

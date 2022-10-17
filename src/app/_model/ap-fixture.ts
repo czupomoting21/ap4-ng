@@ -16,4 +16,8 @@ export interface ApFixture {
   altTeaser: boolean;
   resultingUnit: string;
   version: number;
+
+  leagueName: string;
+  sportId: number;
+  sportName: string;
 }

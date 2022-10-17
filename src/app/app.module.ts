@@ -24,6 +24,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     MatGridListModule,
     MatTableModule,
     MatPaginatorModule,
+    MatExpansionModule,
     LayoutModule,
   ],
   providers: [],
