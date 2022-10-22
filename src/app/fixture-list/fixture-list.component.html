@@ -54,12 +54,10 @@
         <button mat-raised-button color="primary" (click)="showNextFixtures()">Show fixtures</button>
       </mat-grid-tile>
       
-      <mat-grid-tile
-        [colspan]="4"
-        [rowspan]="5"
-        [style.background]="'#eef'">
+</mat-grid-list>
+
           <!-- Events table -->
-          <div *ngIf="fixturesByDay" [style.height]="'100%'" [style.padding]="'15px'">
+          <div class="fixtures-content" *ngIf="fixturesByDay">
                 <mat-accordion>
                 <mat-expansion-panel *ngFor="let fixturesEntry of fixturesByDay | keyvalue">
                   <mat-expansion-panel-header>
@@ -70,20 +68,24 @@
                       {{fixturesEntry.value.length}} fixture(s)
                     </mat-panel-description>
                   </mat-expansion-panel-header>
-                  <app-fixture *ngFor="let fixture of fixturesEntry.value" [fixture]="fixture" ></app-fixture>
+                  
+                  <mat-list>
+                    <ng-container *ngFor="let fixture of fixturesEntry.value; let i = index">
+                      <mat-divider *ngIf="i !== 0"></mat-divider>
+                      <mat-list-item><app-fixture [fixture]="fixture" ></app-fixture></mat-list-item>
+                    </ng-container>
+                  </mat-list>
+
+
                 </mat-expansion-panel>
                 </mat-accordion>
                 
-                
+                <pre>{{fixturesByDay | json}} </pre>
           </div>
         
-
-          <!-- <pre>fixtures: {{ fixtures | json }} </pre> -->
-    </mat-grid-tile>
       
       
       
-</mat-grid-list>
 
 
 
