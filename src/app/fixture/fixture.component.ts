@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { ApFixture } from '../_model/ap-fixture';
+import { FixtureOddsHistoryModalComponent } from '../fixture-odds-history-modal/fixture-odds-history-modal.component';
 
 @Component({
   selector: 'app-fixture',
@@ -8,9 +10,17 @@ import { ApFixture } from '../_model/ap-fixture';
 })
 export class FixtureComponent implements OnInit {
   @Input()
-  fixture: ApFixture;
+  fixture: ApFixture | undefined;
 
-  constructor() {}
+  constructor(public dialog: MatDialog) {}
 
   ngOnInit(): void {}
+
+  showOddsHistory() {
+    console.log('showOddsHistory');
+
+    const dialogRef = this.dialog.open(FixtureOddsHistoryModalComponent, {
+      data: this.fixture?.id,
+    });
+  }
 }
