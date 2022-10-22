@@ -1,1 +1,26 @@
-{{ fixture.id }} | {{ fixture.starts }} | {{ fixture.home }} | {{ fixture.away }}
+<!-- {{ fixture.id }} | {{ fixture.starts }} | {{ fixture.home }} | {{ fixture.away }} -->
+
+<mat-grid-list cols="5" rowHeight="50px">
+
+  <mat-grid-tile
+      [colspan]="1"
+      >
+          {{ fixture?.starts | date }}
+    </mat-grid-tile>
+      <mat-grid-tile
+      [colspan]="2"
+      >
+          {{ fixture?.home }} - {{ fixture?.away  }}
+    </mat-grid-tile>
+
+      <mat-grid-tile
+      [colspan]="1"
+      >
+          {{ fixture?.id  }}
+    </mat-grid-tile>
+    <mat-grid-tile
+      [colspan]="1"
+      >
+        <button mat-raised-button color="primary" (click)="showOddsHistory()">Odds history</button>
+    </mat-grid-tile>
+  </mat-grid-list>

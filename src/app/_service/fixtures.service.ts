@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ApFixture } from '../_model/ap-fixture';
 import { ApLeague } from '../_model/ap-league';
+import { ApOddsMoneylineExt } from '../_model/ap-odds-moneyline-ext';
 import { ApSport } from '../_model/ap-sport';
 
 @Injectable({
@@ -31,5 +32,12 @@ export class FixturesService {
       this.baseApiUri
     }/sports/${sportId}/next-fixtures?leagueIds=${leagueIds.join(',')}`;
     return this.http.get<ApFixture[]>(url);
+  }
+
+  getMoneylineOddsHistoryForFixture(
+    fixtureId: number
+  ): Observable<ApOddsMoneylineExt[]> {
+    const url = `${this.baseApiUri}/fixtures/${fixtureId}/odds-history/moneyline`;
+    return this.http.get<ApOddsMoneylineExt[]>(url);
   }
 }

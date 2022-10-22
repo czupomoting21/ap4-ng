@@ -72,7 +72,7 @@
                   <mat-list>
                     <ng-container *ngFor="let fixture of fixturesEntry.value; let i = index">
                       <mat-divider *ngIf="i !== 0"></mat-divider>
-                      <mat-list-item><app-fixture [fixture]="fixture" ></app-fixture></mat-list-item>
+                      <mat-list-item><app-fixture [fixture]="fixture" class="fixture-item" ></app-fixture></mat-list-item>
                     </ng-container>
                   </mat-list>
 

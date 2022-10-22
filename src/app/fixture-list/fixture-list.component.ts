@@ -121,9 +121,23 @@ export class FixtureListComponent implements OnInit {
         source
           .pipe(
             groupBy((item) =>
-              moment(item?.starts).startOf('day').toISOString()
+              moment(item?.starts).format(moment.HTML5_FMT.DATE)
             ),
-            mergeMap((group) => zip(of(group.key), group.pipe(toArray())))
+            mergeMap((group) =>
+              zip(
+                of(group.key),
+                group.pipe(
+                  toArray(),
+                  map((fixtures) =>
+                    fixtures.sort(
+                      (f1, f2) =>
+                        new Date(f1.starts).getTime() -
+                        new Date(f2.starts).getTime()
+                    )
+                  )
+                )
+              )
+            )
           )
           .subscribe((r) => {
             this.fixturesByDay[r[0]] = r[1];
