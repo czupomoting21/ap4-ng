@@ -2277,6 +2277,13 @@ chartjs-plugin-annotation@^2.0.1:
   resolved "https://registry.yarnpkg.com/chartjs-plugin-annotation/-/chartjs-plugin-annotation-2.0.1.tgz#faba89dac426b37af5b63b8353636ef03d13816c"
   integrity sha512-I+bbmiGuxW68DuhFuCS+oSJN4bzX9d3Z+xJ34+4YhrC68+fncRZgNARgJYqlkCD9s+JQohCkZ0iK/GNr+3Ug2A==
 
+chartjs-plugin-zoom@^1.2.1:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/chartjs-plugin-zoom/-/chartjs-plugin-zoom-1.2.1.tgz#7e350ba20d907f397d0c055239dcc67d326df705"
+  integrity sha512-2zbWvw2pljrtMLMXkKw1uxYzAne5PtjJiOZftcut4Lo3Ee8qUt95RpMKDWrZ+pBZxZKQKOD/etdU4pN2jxZUmg==
+  dependencies:
+    hammerjs "^2.0.8"
+
 "chokidar@>=3.0.0 <4.0.0", chokidar@^3.0.0, chokidar@^3.5.1, chokidar@^3.5.3:
   version "3.5.3"
   resolved "https://registry.yarnpkg.com/chokidar/-/chokidar-3.5.3.tgz#1cf37c8707b932bd1af1ae22c0432e2acd1903bd"
@@ -3387,6 +3394,11 @@ graceful-fs@^4.1.2, graceful-fs@^4.1.6, graceful-fs@^4.2.0, graceful-fs@^4.2.4, 
   version "4.2.10"
   resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-4.2.10.tgz#147d3a006da4ca3ce14728c7aefc287c367d7a6c"
   integrity sha512-9ByhssR2fPVsNZj478qUUbKfmL0+t5BDVyjShtyZZLiK7ZDAArFFfopyOTj0M05wE2tJPisA4iTnnXl2YoPvOA==
+
+hammerjs@^2.0.8:
+  version "2.0.8"
+  resolved "https://registry.yarnpkg.com/hammerjs/-/hammerjs-2.0.8.tgz#04ef77862cff2bb79d30f7692095930222bf60f1"
+  integrity sha512-tSQXBXS/MWQOn/RKckawJ61vvsDpCom87JgxiYdGwHdOa0ht0vzUWDlfioofFCRU0L+6NGDt6XzbgoJvZkMeRQ==
 
 handle-thing@^2.0.0:
   version "2.0.1"

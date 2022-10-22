@@ -30,6 +30,8 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatListModule } from '@angular/material/list';
 import { MatDialogModule } from '@angular/material/dialog';
 import { NgChartsModule } from 'ng2-charts';
+import 'hammerjs';
+import 'chartjs-plugin-zoom';
 
 @NgModule({
   declarations: [

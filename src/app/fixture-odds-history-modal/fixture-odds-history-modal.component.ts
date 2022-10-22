@@ -9,6 +9,7 @@ import { default as Annotation } from 'chartjs-plugin-annotation';
 import { FixturesService } from '../_service/fixtures.service';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ApOddsMoneylineExt } from '../_model/ap-odds-moneyline-ext';
+import zoomPlugin from 'chartjs-plugin-zoom';
 
 @Component({
   selector: 'app-fixture-odds-history-modal',
@@ -28,6 +29,7 @@ export class FixtureOddsHistoryModalComponent implements OnInit {
     private fixturesService: FixturesService
   ) {
     Chart.register(Annotation);
+    Chart.register(zoomPlugin);
   }
 
   ngOnInit(): void {
@@ -59,58 +61,69 @@ export class FixtureOddsHistoryModalComponent implements OnInit {
         {
           data: this.homeOdds,
           label: 'Home',
-          // backgroundColor: 'rgba(148,159,177,0.2)',
-          // borderColor: 'rgba(148,159,177,1)',
+          backgroundColor: 'rgba(255,0,0,0.7)',
+          borderColor: 'rgba(255,0,0,0.7)',
           // pointBackgroundColor: 'rgba(148,159,177,1)',
           // pointBorderColor: '#fff',
           // pointHoverBackgroundColor: '#fff',
           // pointHoverBorderColor: 'rgba(148,159,177,0.8)',
           // fill: 'origin',
         },
-        // {
-        //   data: this.awayOdds,
-        //   label: 'Away',
-        //   backgroundColor: 'rgba(77,83,96,0.2)',
-        //   borderColor: 'rgba(77,83,96,1)',
-        //   pointBackgroundColor: 'rgba(77,83,96,1)',
-        //   pointBorderColor: '#fff',
-        //   pointHoverBackgroundColor: '#fff',
-        //   pointHoverBorderColor: 'rgba(77,83,96,1)',
-        //   fill: 'origin',
-        // },
-        // {
-        //   data: this.drawOdds,
-        //   label: 'Draw',
-        //   backgroundColor: 'rgba(255,0,0,0.3)',
-        //   borderColor: 'red',
-        //   pointBackgroundColor: 'rgba(148,159,177,1)',
-        //   pointBorderColor: '#fff',
-        //   pointHoverBackgroundColor: '#fff',
-        //   pointHoverBorderColor: 'rgba(148,159,177,0.8)',
-        //   fill: 'origin',
-        // },
+        {
+          data: this.awayOdds,
+          label: 'Away',
+          backgroundColor: 'rgba(0,0,255,0.7)',
+          borderColor: 'rgba(0,0,255,0.7)',
+          //   pointBackgroundColor: 'rgba(77,83,96,1)',
+          //   pointBorderColor: '#fff',
+          //   pointHoverBackgroundColor: '#fff',
+          //   pointHoverBorderColor: 'rgba(77,83,96,1)',
+          //   fill: 'origin',
+        },
+        {
+          data: this.drawOdds,
+          label: 'Draw',
+          backgroundColor: 'rgba(0,255,0,0.7)',
+          borderColor: 'rgba(0,255,0,0.7)',
+          //   pointBackgroundColor: 'rgba(148,159,177,1)',
+          //   pointBorderColor: '#fff',
+          //   pointHoverBackgroundColor: '#fff',
+          //   pointHoverBorderColor: 'rgba(148,159,177,0.8)',
+          //   fill: 'origin',
+        },
       ],
     };
   }
 
   public lineChartOptions: any = {
     scales: {
-      xAxes: [
-        {
-          type: 'time',
-          time: {
-            unit: 'hour',
-            displayFormats: {
-              hour: 'HH a',
-            },
-          },
-          display: true,
-          scaleLabel: {
-            display: true,
-            labelString: 'Hour',
+      x: {
+        type: 'time',
+        time: {
+          unit: 'day',
+          displayFormats: {
+            hour: 'HH:mm',
+            day: 'YYYY-MM-DD',
           },
         },
-      ],
+      },
+    },
+    plugins: {
+      zoom: {
+        pan: {
+          enabled: true,
+          mode: 'xy',
+        },
+        zoom: {
+          wheel: {
+            enabled: true,
+          },
+          pinch: {
+            enabled: true,
+          },
+          mode: 'xy',
+        },
+      },
     },
   };
 
