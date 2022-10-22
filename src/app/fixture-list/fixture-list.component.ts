@@ -12,6 +12,7 @@ import { ApFixture } from '../_model/ap-fixture';
 import { MatTableDataSource } from '@angular/material/table';
 import * as _ from 'underscore';
 import { groupBy, mergeMap, toArray } from 'rxjs/operators';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-fixture-list',
@@ -119,7 +120,9 @@ export class FixtureListComponent implements OnInit {
         const source = from(r);
         source
           .pipe(
-            groupBy((item) => new Date(item?.starts).toLocaleDateString()),
+            groupBy((item) =>
+              moment(item?.starts).startOf('day').toISOString()
+            ),
             mergeMap((group) => zip(of(group.key), group.pipe(toArray())))
           )
           .subscribe((r) => {
