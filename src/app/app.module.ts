@@ -32,6 +32,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { NgChartsModule } from 'ng2-charts';
 import 'hammerjs';
 import 'chartjs-plugin-zoom';
+import { StatsLeaguesComponent } from './stats-leagues/stats-leagues.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import 'chartjs-plugin-zoom';
     FixtureListComponent,
     HomeComponent,
     FixtureOddsHistoryModalComponent,
+    StatsLeaguesComponent,
   ],
   imports: [
     BrowserModule,

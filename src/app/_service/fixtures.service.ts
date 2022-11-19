@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { ApFixture } from '../_model/ap-fixture';
 import { ApLeague } from '../_model/ap-league';
 import { ApOddsMoneylineExt } from '../_model/ap-odds-moneyline-ext';
@@ -10,7 +11,7 @@ import { ApSport } from '../_model/ap-sport';
   providedIn: 'root',
 })
 export class FixturesService {
-  baseApiUri = 'https://desktop-qi9h79a:8080/api';
+  baseApiUri = environment.baseApiUri;
 
   constructor(private http: HttpClient) {}
 
