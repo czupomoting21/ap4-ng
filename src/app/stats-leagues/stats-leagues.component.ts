@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { SLeague } from '../_model/stats/s-league';
+import { StatsService } from '../_service/stats.service';
 
 @Component({
   selector: 'app-stats-leagues',
@@ -7,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StatsLeaguesComponent implements OnInit {
 
-  constructor() { }
+  leagues: SLeague[] = [];
+
+  constructor(private statsService: StatsService) { }
 
   ngOnInit(): void {
+    this.statsService.getLeagues().subscribe( r => this.leagues = r);
   }
 
 }
