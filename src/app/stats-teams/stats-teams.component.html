@@ -1,0 +1,26 @@
+<p>stats-teams works!</p>
+
+<mat-form-field appearance="fill">
+  <mat-label>League</mat-label>
+  <mat-select [ngModel]="selectedLeague" (ngModelChange)="onLeagueSelected($event)">
+    <mat-option *ngFor="let league of leagues" [value]="league">{{league.apName}}</mat-option>
+  </mat-select>
+</mat-form-field>
+<div>
+   <ag-grid-angular
+        style="width: 100%; height: 350px;"
+        class="ag-theme-alpine"
+        [rowData]="teams"
+        [columnDefs]="columnDefs">
+    </ag-grid-angular>
+</div>
+
+<pre>
+    selectedLeague:
+    {{selectedLeague|json}}
+</pre>
+
+<pre>
+    teams:
+    {{teams|json}}
+</pre>

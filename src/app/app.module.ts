@@ -29,10 +29,14 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatListModule } from '@angular/material/list';
 import { MatDialogModule } from '@angular/material/dialog';
+import {MatSelectModule} from '@angular/material/select';
 import { NgChartsModule } from 'ng2-charts';
 import 'hammerjs';
 import 'chartjs-plugin-zoom';
 import { StatsLeaguesComponent } from './stats-leagues/stats-leagues.component';
+import { AgGridModule } from 'ag-grid-angular';
+import { StatsTeamsComponent } from './stats-teams/stats-teams.component';
+import { AgTeamEditorComponent } from './ag-team-editor/ag-team-editor.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +46,8 @@ import { StatsLeaguesComponent } from './stats-leagues/stats-leagues.component';
     HomeComponent,
     FixtureOddsHistoryModalComponent,
     StatsLeaguesComponent,
+    StatsTeamsComponent,
+    AgTeamEditorComponent,
   ],
   imports: [
     BrowserModule,
@@ -66,6 +72,8 @@ import { StatsLeaguesComponent } from './stats-leagues/stats-leagues.component';
     MatExpansionModule,
     MatDialogModule,
     MatListModule,
+    MatSelectModule,
+    AgGridModule,
     NgChartsModule.forRoot(),
     LayoutModule,
   ],
